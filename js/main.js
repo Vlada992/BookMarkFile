@@ -4,64 +4,50 @@ document.getElementById("myForm").addEventListener("submit", saveBookmark);
 
 
 function saveBookmark(e) {
+	var siteNameV = document.getElementById("siteName").value;   //take value Name from user input
+	var siteUrlV =  document.getElementById("siteUrl").value;    //take value URL from user input
+	console.log(document.getElementsByTagName('input'));
 
-
-	var siteName = document.getElementById("siteName").value;
-	var siteUrl = document.getElementById("siteUrl").value;
-
-
-	if(!validateForm(siteName, siteUrl)) {
+	if(!validateForm(siteNameV, siteUrlV)) { //Proveravamo da li je dobro ukucano i da li je info validan. !false =true
 
 		return false;
 	}
 
 	var bookmark = {
-		name: siteName,
-		url: siteUrl
-
-
-	}
-
-
+		name: siteNameV,
+		url: siteUrlV
+	};
 
 
 	if(localStorage.getItem("bookmarks") === null) {
-
 		var bookmarks = [];
 
 		bookmarks.push(bookmark); //this will push data from form value and that object to this ARRAY
  		
 		localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
-
 	} else {
-
-
 		var bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
 
 		bookmarks.push(bookmark);
 
 		localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
-
-
-
-
 	}
-
 
 	document.getElementById("myForm").reset();
 
-	fetchBookmarks();
-
-	e.preventDefault();//SO THIS IS PREVENTING FORM FROM SUBMMITING!!
-
-}
+	fetchBookmarks(); //first save bookMark then represent in HTML.
+	e.preventDefault(); //SO THIS IS PREVENTING FORM FROM SUBMMITING!
+} //save bookMark func
 
 
 function deleteBookmark(url) {
-
+    var noParse = localStorage.getItem('bookmarks') //string
+    console.log(noParse);
 	var bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
+	console.log(bookmarks)
 
-	for(var i =0; i < bookmarks.length; i++) {
+
+	for(var i = 0; i < bookmarks.length; i++) {
 
 		if(bookmarks[i].url == url) {
 
@@ -71,50 +57,32 @@ function deleteBookmark(url) {
 	}
 
 	localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
-
-
-	fetchBookmarks();
-
-
-	
+	fetchBookmarks();	
 }
 
 
 
 
 function fetchBookmarks() {
-
-
 	var bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
-
-	
 	var bookmarksResults = document.getElementById("bookmarksResults");
-
-
 	bookmarksResults.innerHTML = "";
 
 	for(var i = 0; i < bookmarks.length; i++) {
 		var name = bookmarks[i].name;
 		var url  = bookmarks[i].url;
-
 		bookmarksResults.innerHTML +=  '<div class = "well">' +
 										'<h3>'+name+ '<br><br>'+
-										'  <a class="btn btn-info" target ="_blank"  href = "'+url+'">  Visit Us!</a>' +	
-										'  <a onclick = "deleteBookmark(\''+url+'\')" class="btn btn-danger"   href = "#">Delete</a> '	+	
+										'  <a class="btn btn-info" target ="_blank"  href = "'+url+'">  Visit Us!&nbsp; <i class="fas fa-external-link-alt"></i> </a>' +	
+										'  <a onclick = "deleteBookmark(\''+url+'\')" class="btn btn-danger"   href = "#">Delete &nbsp; <i class="fas fa-trash-alt"></i></i></a> '	+	
 										'</h3>' +
 										'</div>';			
 	}
-										
-
-
 };
 
 
-
 function validateForm(siteName, siteUrl) {
-
 if(!siteName && !siteUrl) {
-
 		alert("Please fill Website Name and Website Url!");
 		return false;
 		
@@ -139,8 +107,5 @@ if(!siteName && !siteUrl) {
 
 	}
 
-
-	return true;
-
-}
-
+	return true;   //final true of func
+} //validateForm function

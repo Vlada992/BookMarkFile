@@ -2,6 +2,7 @@
 body {
   padding-top: 20px;
   padding-bottom: 20px;
+
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -37,6 +38,7 @@ body {
     max-width: 730px;
   }
 }
+
 .container-narrow > hr {
   margin: 30px 0;
 }
@@ -44,10 +46,10 @@ body {
 /* Main marketing message and sign up button */
 .jumbotron {
   text-align: center;
-  border-bottom: 1px solid #e5e5e5;
+  border:2px solid #e3e3e3;
 }
 .jumbotron .btn {
-  padding: 14px 24px;
+  /*padding: 14px 24px;*/
   font-size: 21px;
 }
 
@@ -76,4 +78,9 @@ body {
   .jumbotron {
     border-bottom: 0;
   }
+}
+
+.well {
+  
+
 }
