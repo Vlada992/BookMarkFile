@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/ms-icon-70x70.png">
+    <link rel="manifest" href="images/manifest.json">
+
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <title>My very first own BookMark App</title>
     <!-- Bootstrap core CSS -->
@@ -25,20 +28,25 @@
 
       <div class="jumbotron">
 
-        <h2>Bookmark Your Favourite Site!</h2>
+        <h2 id ='h2id1'>Bookmark Your Favourite Site!</h2>
         <form id = "myForm">
 
           <div class="form-group">
-            <label>My Site Name:</label>
+            <label id ='styleNameLab'>My Site Name:</label>
               <input type= "text" class= "form-control" id= "siteName" placeholder = "Website Name">
           </div>
 
           <div class="form-group">
-            <label>Site URL:</label>
-              <input type= "text" class = "form-control" id= "siteUrl" placeholder = "Website Url">
+            <label id ='styleUrlLab'>Site URL:</label>
+            <input type= "text" class = "form-control" id= "siteUrl" placeholder = "Website Url (https://www.google.com/)">
           </div>
 
-            <button type = "sumbit" class = "btn btn-success">Submit Here  <i class="fas fa-arrow-alt-circle-right"></i>
+            <button id = 'btnSubId' type = "sumbit" class = "btn btn-success">Submit Here  <i class="fas fa-arrow-alt-circle-down"></i>
+            </button>
+            <button id = 'btnSubIdResp' type = "sumbit" class = "btn btn-success">Submit  <i class="fas fa-arrow-alt-circle-down"></i>
+            </button>
+
+            <button id = 'btnSubIdResp1' type = "sumbit" class = "btn btn-success"><i class="fas fa-arrow-alt-circle-down"></i>
             </button>
 
         </form>
@@ -46,12 +54,49 @@
       </div>
 
       <div class="row marketing">
-        <div class="col-lg-6 w-100">
+        <div class="col-md-6">
           <div id ="bookmarksResults">
           </div>
         </div>
 
+
+
+
+
+        <!--
+        <div class="col-md-4">
+          <div class ="bookmarksResults">
+          
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class ="bookmarksResults">
+
+          </div>
+        </div>
+
+         <div class="col-md-4">
+          <div class ="bookmarksResults">
+
+          </div>
+        </div>
+
+         <div class="col-md-4">
+          <div class ="bookmarksResults">
+
+          </div>
+        </div>
+         <div class="col-md-4">
+          <div class ="bookmarksResults">
+
+          </div>
+        </div>
+        -->
+
+
+
       </div>
+
 
       <footer class="footer">
         <p>&copy; Vladan Petrovic 2018 Bookmarker, Inc.</p>
@@ -60,6 +105,10 @@
     </div> <!-- /container -->
 
 
+    <!--<img style="-webkit-user-select: none;background-position: 0px 0px, 10px 10px;background-size: 20px 20px;background-image:linear-gradient(45deg, #eee 25%, transparent 25%, transparent 75%, #eee 75%, #eee 100%),linear-gradient(45deg, #eee 25%, white 25%, white 75%, #eee 75%, #eee 100%);cursor: zoom-in;" src="
+    http://api.screenshotlayer.com/api/capture?access_key=99359d2c1a52b834f4115b4e13a71262&url=http://apple.com&viewport=1440x900&fullpage=1" width="195" height="662">  -->
+
+     
     <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
     <script src ="js/bootstrap.min.js"> </script>
     <script src ="js/main.js"></script> 
