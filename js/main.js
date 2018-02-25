@@ -17,7 +17,8 @@ function saveBookmark(e) {
 	siteUrlDOM.style.font = 'normal  bold 20px';
 	siteNameDOM.style.font = 'normal  bold 20px';
 
-	if(siteUrlV.charAt(0) != 'h' && siteUrlV.charAt(4) != ':' || siteUrlV.charAt(5) != ':'){
+	if(/*siteUrlV.charAt(0) != 'h' && siteUrlV.charAt(4) != ':' || siteUrlV.charAt(5) != ':'*/ siteUrlV.charAt(0) == 'w'){
+		console.log('PRE:', siteUrlV)  //https: 0123
 		siteUrlV = 'http://' + siteUrlV;
 		console.log(siteUrlV);
 	}
@@ -84,8 +85,9 @@ function fetchBookmarks() {
 		bookmarksResults.innerHTML = "";*/
 		var name = bookmarks[i].name;
 		var url  = bookmarks[i].url;
+		console.log('OVDE JE URL:', url)
 		bookmarksResults.innerHTML +=  '<div id = "wellId" class = "well">' +
-										'<h3 id = btnH3Id>'+name+ '&nbsp;&nbsp;<i title="See latest full capture of page" onclick= callIt(\''+url+'\') class="fa fa-camera-retro"></i>' +  '<br><br>'+
+										'<h3 id = btnH3Id>' + `<p id='pNamBuk'>${name}</p>` + '&nbsp;&nbsp;<i title="See latest full capture of page" onclick= callIt(\''+url+'\') class="fa fa-camera-retro"></i>' +  '<br><br>'+
 										'<img id ="styleCaptImg" src ="http://api.screenshotlayer.com/api/capture?access_key=99359d2c1a52b834f4115b4e13a71262&url='+ url + '&width=350">' + '<br><br>' +
 										'  <a id = "btn1Id" class="btn btn-info" target ="_blank"  href = "'+url+'">Visit Us!&nbsp; <i class="fas fa-external-link-alt"></i> </a>' +	
 										'  <a id = "btn2Id" onclick = "deleteBookmark(\''+url+'\', \''+name+'\')" class="btn btn-danger" href = "#">Delete &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-trash-alt"></i></i></a> '	+	
@@ -115,14 +117,16 @@ if(!siteName && !siteUrl) { //if both not true?
 		alert('Only up to 26 letters')
 		return false
 
-	}else if(siteUrl.charAt(siteUrl.length -1) != '/' || siteUrl.charAt(siteUrl.length -3) == '.'){
+	}else if( siteUrl.charAt(siteUrl.length -3) != '.' && siteUrl.charAt(siteUrl.length -4) != '.'){
 		alert('please use valid URL!')
+		console.log('NA TRI:', siteUrl.charAt(siteUrl.length -3), 'NA cetr:', siteUrl.charAt(siteUrl.length -4))
 		return false;
 	}else if(siteName.match(regex)){
 		alert('Please use valid Name, not URL')
 		return false;
 	} if(!siteUrl.match(regex)) { 
-		alert("Please use valid URL!");
+		console.log(siteUrl.match(regex))
+		alert("Please use valid URL!!!");
 		return false;
 	}
  
