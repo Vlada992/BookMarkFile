@@ -1,14 +1,17 @@
+let lenE = [];
+
+
 $('#stajlBukIc').mouseenter((e)=> {
     e.preventDefault()
+    lenE.push('each');
     document.getElementById('stajlBukIc').src = `images/filledBuk1.png`;
-    document.getElementById('bokmarkDef').style.display = 'block'
-    $('#bokmarkDef').fadeIn(520);
+    document.getElementById('bokmarkDef').style.display = 'block';
 });
 
 $("#stajlBukIc").mouseleave((e)=> {
     e.preventDefault() 
     document.getElementById('stajlBukIc').src = `images/bukImg1.png`;
-    $("#bokmarkDef").fadeOut(400);
+    document.getElementById('bokmarkDef').style.display = 'none';
 });
 
 $("#allDel").mouseenter(()=> {
@@ -32,15 +35,18 @@ $("#allLine").mouseleave(()=> {
 document.getElementById("myForm").addEventListener("submit", saveBookmark);
 
 function saveBookmark(e){
-    document.getElementById('myGifBuk').style.display = 'block'
-    setTimeout(()=>{
-        document.getElementById('myGifBuk').style.display = 'none'
-    }, 2000)
-    var siteNameV = document.getElementById("siteName").value;
-    var siteUrlV = document.getElementById("siteUrl").value;
     if (!validateForm(siteNameV, siteUrlV)) {
         return false;
-    }
+    } 
+    var siteNameV = document.getElementById("siteName").value;
+    var siteUrlV = document.getElementById("siteUrl").value;
+    document.getElementById('myGifBuk').style.display = 'block'
+    setTimeout(() =>{
+        document.getElementById('myGifBuk').style.display = 'none'
+    }, 2000)
+
+
+    
     var siteNameDOM = document.getElementById("siteName");
     var siteUrlDOM = document.getElementById("siteUrl");
     siteUrlDOM.style.font = 'normal  bold 20px';
@@ -82,8 +88,7 @@ function deleteBookmark(url, name) {
     fetchBookmarks();
     fetchBookInline()
 };
-
-function deleteAllBook() {
+function deleteAllBook(){
     var bookmarks2 = JSON.parse(localStorage.getItem("bookmarks"));
     for (var i = 0; i < bookmarks2.length; i++) {
         bookmarks2.splice(i);
@@ -176,11 +181,9 @@ function showFavIcn(loop, eachN, eachN1, eachNG){
 
 
 
-let holdIn   = []
-let holdIOut = []
-let commElm  = [];
-let countTxt = [];
+let holdIn   = [], holdIOut = [], commElm = [], countTxt  = []
 let togleRRR = false;
+
 function changeFavIn(iterIn){
     document.getElementsByClassName('starEmpt')[iterIn].style.color = 'orange';
 }
@@ -200,7 +203,7 @@ function addMesg(comArg, comicon, msgV, btnT){
      /*document.getElementById(comArg).innerText = `Remove Comment`;
      document.getElementById(msgV).innerHTML = `<p>${showTextVal}</p>`;
          document.getElementById(comicon).style.display = 'inline-block';*/
-        console.log('jebte')},
+        },
      function(){
         console.log('heheh')
         //document.getElementById(btnT).innerText = `Remove Comment `;
