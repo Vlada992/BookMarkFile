@@ -1,3 +1,4 @@
+
 let lenE = [];
 
 
@@ -31,36 +32,30 @@ $("#allLine").mouseleave(()=> {
     document.getElementById('allDelDef3').style.opacity = '0'
 });
 
-
 document.getElementById("myForm").addEventListener("submit", saveBookmark);
 
 function saveBookmark(e){
-    if (!validateForm(siteNameV, siteUrlV)) {
-        return false;
-    } 
     var siteNameV = document.getElementById("siteName").value;
     var siteUrlV = document.getElementById("siteUrl").value;
+
+    if (!validateForm(siteNameV, siteUrlV)) return false;
+    
     document.getElementById('myGifBuk').style.display = 'block'
     setTimeout(() =>{
         document.getElementById('myGifBuk').style.display = 'none'
     }, 2000)
 
-
-    
-    var siteNameDOM = document.getElementById("siteName");
-    var siteUrlDOM = document.getElementById("siteUrl");
+    var siteNameDOM = document.getElementById("siteName"), siteUrlDOM = document.getElementById("siteUrl");
     siteUrlDOM.style.font = 'normal  bold 20px';
     siteNameDOM.style.font = 'normal  bold 20px';
-    if (siteUrlV.charAt(0) == 'w') {
-        siteUrlV = 'http://' + siteUrlV;
-    }
-    var tajmIt = String(new Date());
-    var tajm1 = tajmIt.slice(0, 24);
+    if (siteUrlV.charAt(0) == 'w') siteUrlV = 'http://' + siteUrlV;
+    var tajmIt = String(new Date()), tajm1 = tajmIt.slice(0, 24);
     var bookmark = {
         name: siteNameV.toUpperCase(),
         url: siteUrlV,
         time: tajm1
     };
+
     if (localStorage.getItem("bookmarks") === null) {
         var bookmarks = [];
         bookmarks.push(bookmark);
@@ -80,19 +75,16 @@ function saveBookmark(e){
 function deleteBookmark(url, name) {
     var bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
     for (var i = 0; i < bookmarks.length; i++) {
-        if (bookmarks[i].url == url && bookmarks[i].name == name) {
-            bookmarks.splice(i, 1);
-        }
+        if (bookmarks[i].url == url && bookmarks[i].name == name) bookmarks.splice(i, 1);
     }
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
     fetchBookmarks();
     fetchBookInline()
 };
+
 function deleteAllBook(){
     var bookmarks2 = JSON.parse(localStorage.getItem("bookmarks"));
-    for (var i = 0; i < bookmarks2.length; i++) {
-        bookmarks2.splice(i);
-    }
+    for (var i = 0; i < bookmarks2.length; i++) bookmarks2.splice(i);
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks2));
     fetchBookmarks()
     fetchBookInline()
@@ -100,8 +92,7 @@ function deleteAllBook(){
 
 
 function fetchBookmarks(){
-    var bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
-    var bookmarksResults;
+    var bookmarks = JSON.parse(localStorage.getItem("bookmarks")), bookmarksResults;
     bookmarksResults = document.getElementById("bookmarksResults");
     bookmarksResults.innerHTML = "";
     for (var i = 0; i < bookmarks.length; i++) {
@@ -192,7 +183,6 @@ function changeFavOut(iterOut){
 }
 
 
-
 function addMesg(comArg, comicon, msgV, btnT){
      commElm.push(comArg)
      var showTextVal = document.getElementById(comArg).children["0"].value;
@@ -214,7 +204,6 @@ function addMesg(comArg, comicon, msgV, btnT){
 };
 
 
-
 function showMesg(comStore, comVal, e){
     e.preventDefault(); 
     countTxt.push(comVal)
@@ -225,18 +214,12 @@ function showMesg(comStore, comVal, e){
 }
 
 
-
 function showComm(comStore, comVal, msg){
    document.getElementById(msg).style.display = 'inline-block'
 };
 function hideComm(comStore, comVal, msg){
     document.getElementById(msg).style.display = 'none'
-
 };
-
-
-
-
 
 
 
@@ -268,17 +251,17 @@ function validateForm(siteName, siteUrl){
 }
 
 function callIt(takeUrl){
-    let takeUrl1 = String(takeUrl.slice(0, takeUrl.length -1))
-    let takeUrl2;
+    let takeUrl1 = String(takeUrl.slice(0, takeUrl.length -1)), takeUrl2;
     apiKey0 = '99359d2c1a52b834f4115b4e13a71262';
     apiKey1 = 'f8896d862395e4296efadbddb2efeffb';
     if(String(takeUrl.slice(takeUrl.length -1)) == '/' ){
        
-        
-        image.src= window.open(`http://api.screenshotlayer.com/api/capture?access_key=f8896d862395e4296efadbddb2efeffb&url=${takeUrl1}&viewport=1440x900&fullpage=1`)
+    image.src= window.open(`http://api.screenshotlayer.com/api/capture?access_key=f8896d862395e4296efadbddb2efeffb&url=${takeUrl1}&viewport=1440x900&fullpage=1`)
     }else {
     takeUrl2 = takeUrl + '/';
     var image = new Image();
     image.src= window.open(`http://api.screenshotlayer.com/api/capture?access_key=f8896d862395e4296efadbddb2efeffb&url=${takeUrl2}&viewport=1440x900&fullpage=1`)
     };
 };
+
+
